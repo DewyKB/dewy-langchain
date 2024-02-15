@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dewy-langchain"
-version = "0.2.2"
+version = "0.2.3"
 description = ""
 authors = ["Ben Chambers <35960+bjchambers@users.noreply.github.com>"]
 readme = "README.md"
@@ -14,6 +14,8 @@ langchain-core = "^0.1.23"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.2.1"
+pytest = "^8.0.0"
+dewy = "^0.2.0"
 
 [build-system]
 requires = ["poetry-core"]

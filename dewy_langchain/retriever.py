@@ -24,10 +24,6 @@ class DewyRetriever(BaseRetriever):
     client: Client
     collection: str
 
-    def __init__(self, client: Client, collection: str) -> None:
-        self.client = client
-        self.collection = collection
-
     @staticmethod
     def for_collection(
         collection: str,
@@ -36,11 +32,11 @@ class DewyRetriever(BaseRetriever):
     ) -> DewyRetriever:
         base_url = base_url or "localhost:8000"
         client = Client(base_url)
-        return DewyRetriever(client, collection)
+        return DewyRetriever(client=client, collection=collection)
 
     def _make_request(self, query: str) -> RetrieveRequest:
         return RetrieveRequest(
-            collection_id=self.collection_id,
+            collection=self.collection,
             query=query,
             include_image_chunks=False,
         )
