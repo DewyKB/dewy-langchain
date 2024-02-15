@@ -10,6 +10,7 @@ from dewy_client import Client
 from dewy_client.api.kb import retrieve_chunks
 from dewy_client.models import RetrieveRequest, TextResult
 
+
 class DewyRetriever(BaseRetriever):
     """Retriever using Dewy for knowledege management.
 
@@ -23,9 +24,7 @@ class DewyRetriever(BaseRetriever):
     client: Client
     collection: str
 
-    def __init__(self,
-                 client: Client,
-                 collection: str) -> None:
+    def __init__(self, client: Client, collection: str) -> None:
         self.client = client
         self.collection = collection
 
@@ -50,16 +49,20 @@ class DewyRetriever(BaseRetriever):
             "document_id": chunk.document_id,
             "similarity_score": chunk.score,
         }
-        return Document(page_content=chunk.text, metadata = metadata)
+        return Document(page_content=chunk.text, metadata=metadata)
 
     def _get_relevant_documents(
         self, query: str, *, run_manager: CallbackManagerForRetrieverRun
     ) -> List[Document]:
-        retrieved = retrieve_chunks.sync(client=self.client, body=self._make_request(query))
+        retrieved = retrieve_chunks.sync(
+            client=self.client, body=self._make_request(query)
+        )
         return [self._make_document(chunk) for chunk in retrieved.text_results]
 
     async def _aget_relevant_documents(
         self, query: str, *, run_manager: AsyncCallbackManagerForRetrieverRun
     ) -> Coroutine[Any, Any, List[Document]]:
-        retrieved = await retrieve_chunks.asyncio(client=self.client, body=self._make_request(query))
+        retrieved = await retrieve_chunks.asyncio(
+            client=self.client, body=self._make_request(query)
+        )
         return [self._make_document(chunk) for chunk in retrieved.text_results]
