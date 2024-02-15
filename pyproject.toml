@@ -12,6 +12,9 @@ dewy-client = "^0.2.0"
 langchain-core = "^0.1.23"
 
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.2.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
