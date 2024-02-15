@@ -34,7 +34,9 @@ class DewyRetriever(BaseRetriever):
         *,
         base_url: Optional[str] = None,
     ) -> DewyRetriever:
-        pass
+        base_url = base_url or "localhost:8000"
+        client = Client(base_url)
+        return DewyRetriever(client, collection)
 
     def _make_request(self, query: str) -> RetrieveRequest:
         return RetrieveRequest(
