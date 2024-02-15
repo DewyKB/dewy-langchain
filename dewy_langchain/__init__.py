@@ -1,3 +1,3 @@
-from .retriever import Retriever
+from .retriever import DewyRetriever
 
-__all__ = ["Retriever"]
+__all__ = ["DewyRetriever"]

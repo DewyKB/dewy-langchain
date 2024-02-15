@@ -10,7 +10,7 @@ from dewy_client import Client
 from dewy_client.api.kb import retrieve_chunks
 from dewy_client.models import RetrieveRequest, TextResult
 
-class Retriever(BaseRetriever):
+class DewyRetriever(BaseRetriever):
     """Retriever using Dewy for knowledege management.
 
     Example:
@@ -34,7 +34,7 @@ class Retriever(BaseRetriever):
         collection: str = "main",
         *,
         base_url: Optional[str] = None,
-    ) -> Retriever:
+    ) -> DewyRetriever:
         pass
 
     def _make_request(self, query: str) -> RetrieveRequest:
@@ -45,7 +45,12 @@ class Retriever(BaseRetriever):
         )
 
     def _make_document(self, chunk: TextResult) -> Document:
-        return Document(page_content=chunk.text, metadata = { "chunk_id": chunk.chunk_id })
+        metadata = {
+            "chunk_id": chunk.chunk_id,
+            "document_id": chunk.document_id,
+            "similarity_score": chunk.score,
+        }
+        return Document(page_content=chunk.text, metadata = metadata)
 
     def _get_relevant_documents(
         self, query: str, *, run_manager: CallbackManagerForRetrieverRun
