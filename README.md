@@ -11,7 +11,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from dewy_langchain import DewyRetriever
 
-retriever = DewyRetriever.for_collection("main", base_url="localhost:8000")
+retriever = DewyRetriever.for_collection("main", base_url="http://localhost:8000")
 prompt = ChatPromptTemplate.from_messages(
     [
         (
