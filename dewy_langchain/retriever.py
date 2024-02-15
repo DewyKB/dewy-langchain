@@ -28,9 +28,9 @@ class DewyRetriever(BaseRetriever):
         self.client = client
         self.collection = collection
 
-    @classmethod
+    @staticmethod
     def for_collection(
-        collection: str = "main",
+        collection: str,
         *,
         base_url: Optional[str] = None,
     ) -> DewyRetriever:
