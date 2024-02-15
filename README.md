@@ -9,9 +9,9 @@ from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
-from dewy_langchain import Retriever
+from dewy_langchain import DewyRetriever
 
-retriever = Retriever(collection_id=collection_id)
+retriever = DewyRetriever(collection_id=collection_id)
 prompt = ChatPromptTemplate.from_messages(
     [
         (
