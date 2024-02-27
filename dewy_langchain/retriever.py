@@ -17,8 +17,8 @@ class DewyRetriever(BaseRetriever):
     Example:
       .. code-block:: python
 
-        from dewy_langchain import Retriever
-        retriever = Retriever.for_collection("main")
+        from dewy_langchain import DewyRetriever
+        retriever = DewyRetriever.for_collection("main")
     """
 
     client: Client
